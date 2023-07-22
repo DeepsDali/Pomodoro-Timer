@@ -57,3 +57,21 @@ h1 {
 .btn:hover {
   background-color: var(--green);
 }
+
+.nav-button {
+  border: none;
+  width: 100px;
+  font-size: 1.3em;
+  background-color: transparent;
+  color: var(--green);
+  cursor: pointer;
+}
+#setting {
+  width: 50px;
+}
+.active {
+  background-color: var(--green);
+  color: var(--dark);
+  padding: 6px;
+  border-radius: 10px;
+}
