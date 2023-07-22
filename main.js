@@ -9,6 +9,7 @@ const workDurationInput = document.querySelector("#workDurationInput");
 const breakDurationInput = document.querySelector("#breakDurationInput");
 const saveSettingsButton = document.querySelector("#saveSettingsButton");
 const closeSettingsButton = document.querySelector("#closeSettingsButton");
+const alarmSound = new Audio("./sounds/alarm.mp3");
 
 //Open and close modal
 let workMins = 25;
@@ -78,8 +79,10 @@ const formatTime = (time) => (time < 10 ? "0" + time : time);
 const updateTimer = () => {
   const minutes = Math.floor(countdownDuration / 60);
   const seconds = countdownDuration % 60;
-  timerElement.textContent = formatTime(minutes) + ":" + formatTime(seconds);
-
+  timerElement.textContent = formatTime(minutes) + " : " + formatTime(seconds);
+  if (countdownDuration === 1) {
+    alarmSound.play();
+  }
   if (countdownDuration === 0) {
     timerElement.classList.add("seesaw");
     if (workMode.classList.contains("active")) {
@@ -104,7 +107,7 @@ const updateTimer = () => {
     setTimeout(() => {
       timerElement.classList.remove("seesaw");
       updateTimer();
-    }, 8000);
+    }, 12000);
   }
   countdownDuration--;
 };
