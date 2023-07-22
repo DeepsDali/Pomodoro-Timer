@@ -143,3 +143,22 @@ document.addEventListener("DOMContentLoaded", () => {
   countdownDuration = workDuration;
   updateTimer();
 });
+//Reset Timer
+const resetTimer = () => {
+  const isConfirmed = confirm("Are you sure you want to stop this session?");
+  if (isConfirmed) {
+    // User clicked "OK"
+    pauseTimer();
+    if (workMode.classList.contains("active")) {
+      countdownDuration = workDuration;
+    } else {
+      countdownDuration = breakDuration;
+    }
+    updateTimer();
+    console.log("Proceeding...");
+  } else {
+    // User clicked "Cancel"
+    console.log("Cancelled.");
+  }
+};
+resetButton.addEventListener("click", resetTimer);
