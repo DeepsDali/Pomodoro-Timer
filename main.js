@@ -22,10 +22,25 @@ closeSettingsButton.addEventListener(
 );
 //Store timer duration input values to local storage
 const saveSettings = () => {
-  localStorage.setItem("workMins", parseInt(workDurationInput.value));
-  localStorage.setItem("breakMins", parseInt(breakDurationInput.value));
+  // Update timer durations immediately after saving settings
+  workMins = parseInt(workDurationInput.value);
+  breakMins = parseInt(breakDurationInput.value);
+  workDuration = workMins * 60;
+  breakDuration = breakMins * 60;
+  if (workMode.classList.contains("active")) {
+    countdownDuration = workDuration;
+  } else {
+    countdownDuration = breakDuration;
+  }
+
+  localStorage.setItem("workMins", workMins);
+  localStorage.setItem("breakMins", breakMins);
+  console.log(`Stored Work Mins: ${workMins}`);
+  console.log(`Stored Break Mins: ${breakMins}`);
   modal.style.display = "none";
+  updateTimer(); // Update the timer display immediately after saving settings
 };
+
 const storedWorkMins = localStorage.getItem("workMins");
 const storedBreakMins = localStorage.getItem("breakMins");
 console.log(`Stored Work Mins: ${storedWorkMins}`);
