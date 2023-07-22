@@ -31,3 +31,19 @@ console.log(`Stored Work Mins: ${storedWorkMins}`);
 console.log(`Stored Break Mins: ${storedBreakMins}`);
 
 saveSettingsButton.addEventListener("click", saveSettings);
+
+//Start/Pause Btn
+// Get timer duration input values from local storage
+
+if (storedWorkMins !== null) {
+  workMins = parseInt(storedWorkMins);
+}
+
+if (storedBreakMins !== null) {
+  breakMins = parseInt(storedBreakMins);
+}
+// convert minutes to seconds
+let workDuration = workMins * 60;
+let breakDuration = breakMins * 60;
+
+let countdownDuration = workDuration; // Initial countdown duration is set to work duration
