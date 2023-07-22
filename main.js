@@ -114,3 +114,11 @@ breakMode.addEventListener("click", () => {
     document.body.style.background = "#3e2b77";
   }
 });
+// Set Work as default mode on Load
+
+document.addEventListener("DOMContentLoaded", () => {
+  workMode.classList.add("active");
+  breakMode.classList.remove("active");
+  countdownDuration = workDuration;
+  updateTimer();
+});
