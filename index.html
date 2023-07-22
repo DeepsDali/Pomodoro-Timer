@@ -40,7 +40,24 @@
         </div>
       </section>
     </main>
-
+    <div id="modal" class="modal">
+      <div>
+        <h2>Settings</h2>
+        <button id="setting" class="nav-button">
+          <i class="fas fa-close"></i>
+        </button>
+      </div>
+      <label for="workDurationInput">Work Duration (minutes):</label>
+      <input type="number" id="workDurationInput" value="25" min="1" max="60" />
+      <label for="breakDurationInput">Break Duration (minutes):</label>
+      <input
+        type="number"
+        id="breakDurationInput"
+        value="25"
+        min="25"
+        max="60"
+      />
+    </div>
     <script src="./main.js"></script>
   </body>
 </html>
