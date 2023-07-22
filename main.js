@@ -19,3 +19,15 @@ closeSettingsButton.addEventListener(
   "click",
   () => (modal.style.display = "none")
 );
+//Store timer duration input values to local storage
+const saveSettings = () => {
+  localStorage.setItem("workMins", parseInt(workDurationInput.value));
+  localStorage.setItem("breakMins", parseInt(breakDurationInput.value));
+  modal.style.display = "none";
+};
+const storedWorkMins = localStorage.getItem("workMins");
+const storedBreakMins = localStorage.getItem("breakMins");
+console.log(`Stored Work Mins: ${storedWorkMins}`);
+console.log(`Stored Break Mins: ${storedBreakMins}`);
+
+saveSettingsButton.addEventListener("click", saveSettings);
