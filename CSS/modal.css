@@ -1,5 +1,5 @@
 .modal {
-  /* display: none; */
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -47,7 +47,7 @@
   color: var(--green);
 }
 
-#close,
+#closeSettingsButton,
 #setting {
   background-color: transparent;
   color: var(--green);
@@ -57,13 +57,13 @@
   padding-left: 70px;
 }
 
-#close i,
+#closeSettingsButton i,
 #setting i {
   font-size: 1.2em;
   transition: transform 0.3s ease;
 }
 
-#close:hover i,
+#closeSettingsButton:hover i,
 #setting:hover i {
   transform: rotate(90deg);
 }
