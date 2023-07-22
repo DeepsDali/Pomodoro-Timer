@@ -47,3 +47,27 @@ let workDuration = workMins * 60;
 let breakDuration = breakMins * 60;
 
 let countdownDuration = workDuration; // Initial countdown duration is set to work duration
+
+let timerInterval;
+let isTimerRunning = false; // To track if the timer is currently running
+const toggleTimer = () => {
+  if (isTimerRunning) {
+    pauseTimer();
+  } else {
+    countdownDuration = workDuration;
+    startTimer();
+  }
+};
+
+const startTimer = () => {
+  isTimerRunning = true;
+  startButton.textContent = "Pause";
+  timerInterval = setInterval(updateTimer, 1000);
+  updateTimer();
+};
+
+const pauseTimer = () => {
+  isTimerRunning = false;
+  startButton.textContent = "Start";
+  clearInterval(timerInterval);
+};
