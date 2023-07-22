@@ -91,3 +91,26 @@ const updateTimer = () => {
   countdownDuration--;
 };
 startButton.addEventListener("click", toggleTimer);
+
+//Work/ Break Modes
+// Event listener for "Work" button
+workMode.addEventListener("click", () => {
+  if (!isTimerRunning) {
+    countdownDuration = workDuration;
+    updateTimer();
+    workMode.classList.add("active");
+    breakMode.classList.remove("active");
+    document.body.style.background = "#1e1f28";
+  }
+});
+
+// Event listener for "Break" button
+breakMode.addEventListener("click", () => {
+  if (!isTimerRunning) {
+    countdownDuration = breakDuration;
+    updateTimer();
+    breakMode.classList.add("active");
+    workMode.classList.remove("active");
+    document.body.style.background = "#3e2b77";
+  }
+});
