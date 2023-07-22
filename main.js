@@ -49,12 +49,12 @@ let breakDuration = breakMins * 60;
 let countdownDuration = workDuration; // Initial countdown duration is set to work duration
 
 let timerInterval;
+let isTimerPaused = true; // To track if the timer is currently paused
 let isTimerRunning = false; // To track if the timer is currently running
 const toggleTimer = () => {
   if (isTimerRunning) {
     pauseTimer();
   } else {
-    countdownDuration = workDuration;
     startTimer();
   }
 };
@@ -68,6 +68,26 @@ const startTimer = () => {
 
 const pauseTimer = () => {
   isTimerRunning = false;
+  isTimerPaused = true;
   startButton.textContent = "Start";
   clearInterval(timerInterval);
 };
+
+const formatTime = (time) => (time < 10 ? "0" + time : time);
+
+const updateTimer = () => {
+  const minutes = Math.floor(countdownDuration / 60);
+  const seconds = countdownDuration % 60;
+  timerElement.textContent = formatTime(minutes) + ":" + formatTime(seconds);
+  if (countdownDuration === 0) {
+    timerElement.textContent =
+      formatTime(Math.floor(workDuration / 60)) +
+      ":" +
+      formatTime(workDuration % 60);
+    pauseTimer();
+
+    countdownDuration = workDuration;
+  }
+  countdownDuration--;
+};
+startButton.addEventListener("click", toggleTimer);
