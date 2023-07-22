@@ -79,14 +79,24 @@ const updateTimer = () => {
   const minutes = Math.floor(countdownDuration / 60);
   const seconds = countdownDuration % 60;
   timerElement.textContent = formatTime(minutes) + ":" + formatTime(seconds);
-  if (countdownDuration === 0) {
-    timerElement.textContent =
-      formatTime(Math.floor(workDuration / 60)) +
-      ":" +
-      formatTime(workDuration % 60);
-    pauseTimer();
 
-    countdownDuration = workDuration;
+  if (countdownDuration === 0) {
+    if (workMode.classList.contains("active")) {
+      // If it was the work duration, start the break
+      countdownDuration = breakDuration;
+      workMode.classList.remove("active");
+      breakMode.classList.add("active");
+      document.body.style.background = "#3e2b77";
+    } else {
+      // If it was the break duration, start the work
+      countdownDuration = workDuration;
+      workMode.classList.add("active");
+      breakMode.classList.remove("active");
+      document.body.style.background = "#1e1f28";
+    }
+
+    // Add a 1-second delay before updating the timer display
+    setTimeout(updateTimer, 1000);
   }
   countdownDuration--;
 };
