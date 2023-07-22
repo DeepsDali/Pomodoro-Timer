@@ -81,6 +81,7 @@ const updateTimer = () => {
   timerElement.textContent = formatTime(minutes) + ":" + formatTime(seconds);
 
   if (countdownDuration === 0) {
+    timerElement.classList.add("seesaw");
     if (workMode.classList.contains("active")) {
       // If it was the work duration, start the break
       countdownDuration = breakDuration;
@@ -94,9 +95,16 @@ const updateTimer = () => {
       breakMode.classList.remove("active");
       document.body.style.background = "#1e1f28";
     }
-
+    timerElement.textContent =
+      formatTime(Math.floor(countdownDuration / 60)) +
+      ":" +
+      formatTime(countdownDuration % 60);
     // Add a 1-second delay before updating the timer display
-    setTimeout(updateTimer, 1000);
+    timerElement.classList.add("seesaw");
+    setTimeout(() => {
+      timerElement.classList.remove("seesaw");
+      updateTimer();
+    }, 8000);
   }
   countdownDuration--;
 };
