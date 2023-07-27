@@ -94,7 +94,9 @@ const formatTime = (time) => (time < 10 ? "0" + time : time);
 const updateTimer = () => {
   const minutes = Math.floor(countdownDuration / 60);
   const seconds = countdownDuration % 60;
-  timerElement.textContent = formatTime(minutes) + " : " + formatTime(seconds);
+  const formattedTime = `${formatTime(minutes)} : ${formatTime(seconds)}`;
+  timerElement.textContent = formattedTime;
+  document.title = `${formattedTime}`;
   if (countdownDuration === 1) {
     alarmSound.play();
   }
